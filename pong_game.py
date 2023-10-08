@@ -56,21 +56,29 @@ def paddle_a_up():
     y = paddle_a.ycor()
     y += 20
     paddle_a.sety(y)
+    if paddle_a.ycor() > 250:
+        paddle_a.sety(250)
 
 def paddle_a_down():
     y = paddle_a.ycor()
     y -= 20
     paddle_a.sety(y)
+    if paddle_a.ycor() < -250:
+        paddle_a.sety(-250)
 
 def paddle_b_up():
     y = paddle_b.ycor()
     y += 20
     paddle_b.sety(y)
+    if paddle_b.ycor() > 250:
+        paddle_b.sety(250)
 
 def paddle_b_down():
     y = paddle_b.ycor()
     y -= 20
     paddle_b.sety(y)
+    if paddle_b.ycor() < -250:
+        paddle_b.sety(-250)
 
 # Keyborad binding
 wn.listen()
@@ -114,12 +122,12 @@ while True:
         pen.write("Player A: {}  Player B: {}".format(score_a, score_b), align="center", font=("Courier", 24, "normal"))
 
     # Paddle and ball collisions
-    if (ball.xcor() > 340 and ball.xcor() < 350) and (ball.ycor() < paddle_b.ycor() + 40 and ball.ycor() > paddle_b.ycor() - 40):
+    if (ball.xcor() > 340 and ball.xcor() < 350) and (ball.ycor() < paddle_b.ycor() + 50 and ball.ycor() > paddle_b.ycor() - 50):
         ball.setx(340)
         ball.dx *= -1
         os.system("afplay bounce.wav&")
 
-    if (ball.xcor() < -340 and ball.xcor() > -350) and (ball.ycor() < paddle_a.ycor() + 40 and ball.ycor() > paddle_a.ycor() - 40):
+    if (ball.xcor() < -340 and ball.xcor() > -350) and (ball.ycor() < paddle_a.ycor() + 50 and ball.ycor() > paddle_a.ycor() - 50):
         ball.setx(-340)
         ball.dx *= -1
         os.system("afplay bounce.wav&")
